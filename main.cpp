@@ -1,10 +1,10 @@
-/*******************************
- * Author:       Platonov A.A. *
- * Group:        ПИ-231        *
- * Date:         28.09.2023    *
- * Project name: Calendar      *
- * OnlineGDB:  *
- *******************************/
+/**********************************************
+ * Author:       Platonov A.A.                *
+ * Group:        ПИ-231                       *
+ * Date:         28.09.2023                   *
+ * Project name: Calendar                     *
+ * OnlineGDB: https://onlinegdb.com/Hte28ubRo *
+ **********************************************/
 
 #include <iostream>
 #include <string>
@@ -27,21 +27,25 @@ int main() {
   int jDiv4 = j / 4;
   currWeekDay = int(1 + floor(13 * (13 + 1) / 5) + k + kDiv4 + jDiv4 - 2 * j) % 7 - 3;
   if (year % 4 == 0 && !(year % 100 == 0 && year % 400 == 0)) {
-    daysAmount[1]++;
-    currWeekDay--;
+    ++daysAmount[1];
+    --currWeekDay;
   }
   if (currWeekDay < 0) currWeekDay += 7;
   
-  for (int i = 0; i < 12; i++) {
-    cout << "\n\n" << month[i] << '\n';
-	for (int i = 0; i < currWeekDay; i++) cout << "   ";
-	for (int currDay = 1; currDay <= daysAmount[i]; currDay++) {
-      if (currDay < 10) cout << ' ';
+  for (int indexMonth = 0; indexMonth < 12; ++indexMonth) {
+    cout << "\n\n" << month[indexMonth] << '\n';
+    for (int day = 0; day < currWeekDay; ++day) {
+      cout << "   ";
+    }
+    for (int currDay = 1; currDay <= daysAmount[indexMonth]; currDay++) {
+      if (currDay < 10) {
+        cout << ' ';
+      }
       cout << currDay << ' ';
-	  currWeekDay++;
-	  if (currWeekDay == 7) {
+      ++currWeekDay;
+      if (currWeekDay == 7) {
         currWeekDay = 0;
-        if (currDay != daysAmount[i]) cout << '\n';
+        if (currDay != daysAmount[indexMonth]) cout << '\n';
       }
     }
   }
